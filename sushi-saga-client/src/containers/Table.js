@@ -4,7 +4,8 @@ import SushiWallet from '../components/SushiWallet'
 
 class Table extends React.Component {
   state = {
-    showForm: false
+    showForm: false,
+    addAmount: 0
   }
 
   renderPlates = (array) => {
@@ -14,13 +15,17 @@ class Table extends React.Component {
   }
 
   toggleForm = () => {
-    this.setState({showForm: !this.state.showForm})
+    this.setState({showForm: !this.state.showForm, addAmount: 0})
+  }
+
+  updateAmount = (event) => {
+    this.setState({addAmount: parseInt(event.target.value, 10)});
   }
 
   handleClick = event => {
     event.preventDefault();
-    this.props.addMoney(parseInt(event.target[0].value, 10));
-    this.setState({showForm: false}, event.target.reset())
+    this.props.addMoney(this.state.addAmount);
+    this.setState({showForm: false, addAmount: 0})
   }
 
   render() {
@@ -31,7 +36,7 @@ class Table extends React.Component {
         <h1 className="remaining">
           You have: ${ money } remaining!
           {this.state.showForm ? 
-              <SushiWallet handleClick={this.handleClick} toggleForm={this.toggleForm} />
+              <SushiWallet addAmount={this.state.addAmount} handleClick={this.handleClick} toggleForm={this.toggleForm} updateAmount={this.updateAmount}/>
             : 
               <Button handleClick={this.toggleForm} text='Add Money'/>
             }
