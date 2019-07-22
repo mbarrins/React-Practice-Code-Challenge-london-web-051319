@@ -32,11 +32,6 @@ class Table extends React.Component {
           You have: ${ money } remaining!
           {this.state.showForm ? 
               <SushiWallet handleClick={this.handleClick} toggleForm={this.toggleForm} />
-              // <form onSubmit={this.handleClick}>
-              //   <input type='number' placeholder='Amount'/>
-              //   <button>Add</button>
-              //   <button onClick={this.toggleForm}>Cancel</button>
-              // </form>
             : 
               <Button handleClick={this.toggleForm} text='Add Money'/>
             }
