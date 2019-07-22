@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import Button from '../components/Button'
+import SushiWallet from '../components/SushiWallet'
 
 class Table extends React.Component {
   state = {
@@ -30,11 +31,12 @@ class Table extends React.Component {
         <h1 className="remaining">
           You have: ${ money } remaining!
           {this.state.showForm ? 
-              <form onSubmit={this.handleClick}>
-                <input type='number' placeholder='Amount'/>
-                <button>Add</button>
-                <button onClick={this.toggleForm}>Cancel</button>
-              </form>
+              <SushiWallet handleClick={this.handleClick} toggleForm={this.toggleForm} />
+              // <form onSubmit={this.handleClick}>
+              //   <input type='number' placeholder='Amount'/>
+              //   <button>Add</button>
+              //   <button onClick={this.toggleForm}>Cancel</button>
+              // </form>
             : 
               <Button handleClick={this.toggleForm} text='Add Money'/>
             }
