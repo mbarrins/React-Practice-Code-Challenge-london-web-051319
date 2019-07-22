@@ -50,11 +50,11 @@ class App extends Component {
   // }
 
   displaySushi = () => {
-    return this.state.sushi.slice(this.state.page * 4, (this.state.page * 4) + 4)
+    return this.state.sushi.slice(this.state.page * PER_PAGE, (this.state.page * PER_PAGE) + PER_PAGE)
   }
 
   moreSushi = () => {
-    const page = (((this.state.page + 1) * 4) + 4) > this.state.sushi.length ?
+    const page = (((this.state.page + 1) * PER_PAGE) + PER_PAGE) > this.state.sushi.length ?
                     0 : this.state.page + 1
     this.setState({ page })
   }
@@ -67,7 +67,7 @@ class App extends Component {
     return (
       <div className="app">
         <SushiContainer  sushis={this.displaySushi()} eaten={this.state.eaten} moreButton={{handleClick: this.moreSushi, text: 'More sushi!'}} eatSushi={this.eatSushi}/>
-        <Table eaten={this.state.eaten} money={this.state.wallet} walletButton={{handleClick: this.moreSushi, text: 'Add Money'}}/>
+        <Table eaten={this.state.eaten} money={this.state.wallet} addMoney={this.addMoney}/>
       </div>
     );
   }
